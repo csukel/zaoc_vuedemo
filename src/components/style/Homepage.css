@@ -1,0 +1,32 @@
+.busy-indicator-container {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.nav-tabs .nav-link {
+    color: #17A2B8;
+    background: #F8F9FA;
+}
+.nav-tabs .nav-link.active {
+    color: white;
+    background: #17A2B8;
+    /* border-color: yellow; */
+}
+
+.nav-tabs .nav-link:hover{
+    background: gray !important;
+    color: white !important;
+}
+
+h4.card-title {
+    font-size: 1.25rem;
+}

@@ -1,0 +1,56 @@
+<div>
+    <b-nav fill tabs>
+        <b-nav-item @click="onTabPress(tab,$event)" v-for="tab in tabs" :key="tab.name" :active="tab.active">
+            {{ tab.name }} <span v-if="tab.active">({{patients.length}})</span>
+        </b-nav-item>
+
+    </b-nav>
+    <pulse-loader class="busy-indicator-container" :loading="showLoading" :size="busyIndicatorSize"></pulse-loader>
+    <b-container fluid>
+        <b-row style="margin-top:1rem ;display:block; text-align:center">
+            <b-col md="6" style="display: inline-block">
+                    <b-form-input  @input="onSearch"  placeholder="Search"></b-form-input>
+
+            </b-col>
+                
+        </b-row>
+        <b-row style="margin-top:1rem">
+            
+            <b-col  sm="6" md="4" lg="3" xl="2" v-for="patient in patients" >
+                <b-card  style="margin: 0.3rem"  bg-variant="light" :key="patient.FALNR" :title="patient.VNAME + ' ' + patient.NNAME" :sub-title="patient.NAME1 + ' ' + patient.NAME2">
+                    <b-container fluid>
+                        <b-row>
+                            <b-col >
+                                <p>Bed: {{ patient.BETT }}</p>
+                            </b-col>
+                            <b-col style="text-align: right">
+                                <p style="text-align: right">Age: {{patient.ZAGE }}y</p>
+                                <img v-bind:src="getGenderSrc(patient)" alt="gender">
+                            </b-col>
+                        </b-row>
+                    </b-container>
+                    <div slot="footer">
+                        <b-container>
+                            <b-row>
+                                <b-col style="text-align: start">
+                                    <small class="text-muted">D: {{ patient.ZDAY }}, E: {{patient.EVENING}}, N: {{patient.NIGHT}}</small>
+                                </b-col>
+                                <b-col style="text-align: right">
+                                    <b-button style="cursor:pointer" v-on:click="onChargePatient(patient,$event)" >Charge</b-button>
+                                </b-col>
+                            </b-row>
+                        </b-container>
+
+
+                    </div>
+                </b-card>
+            </b-col>
+        </b-row>
+        <b-row v-if="nodata">
+            <b-col style="text-align: center" sm="12" >
+                There are no patients
+            </b-col>
+        </b-row>
+    </b-container>
+
+</div>
