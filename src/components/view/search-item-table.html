@@ -24,7 +24,7 @@
                                     <icon name="minus" scale="1"></icon>
                                 </b-button>
                             </b-input-group-button>
-                            <b-form-input v-model="data.value"></b-form-input>
+                            <b-form-input type="number" min="0" :max="data.item.availQuantity" @change="onChargeQtyChange(data)" v-model="data.item.chargeQuantity"></b-form-input>
 
                             <b-input-group-button slot="right">
                                 <b-button  @click="increaseQty($event,data)" variant="success">

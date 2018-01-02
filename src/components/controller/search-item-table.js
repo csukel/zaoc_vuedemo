@@ -79,18 +79,26 @@ export default {
         },
         increaseQty: function(event,data){
             let item = data.item;
-            if (item.availQuantity> item.chargeQuantity){
+            if (parseInt(item.availQuantity)> parseInt(item.chargeQuantity)){
                 item.chargeQuantity++;
             }
         },
         decreaseQty: function(event,data){
             let item = data.item;
-            if ( 0 < item.chargeQuantity){
+            if ( 0 < parseInt(item.chargeQuantity)){
                 item.chargeQuantity--;
             }
         },
+        onChargeQtyChange: function(data){
+            if (parseInt(data.item.chargeQuantity) > parseInt(data.item.availQuantity) || parseInt(data.item.chargeQuantity ) < 0 ){
+                data.item.chargeQuantity = data.item.availQuantity;
+            }
+        },
         addItemsToCart: function(){
-            
+            let filteredItems = this.searchItems.filter(item=>{
+                return parseInt(item.availQuantity) > 0 && parseInt(item.chargeQuantity)>0;
+            });
+            //TODO: commit filteredItems to the store 
         }
     }
 };
