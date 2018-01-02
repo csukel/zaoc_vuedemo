@@ -3,7 +3,6 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
     name: "Homepage",
-    props: ['authenticated'],
     components: {
         "PulseLoader": PulseLoader
     },
@@ -56,7 +55,10 @@ export default {
     },
     created() {
         this.tabs.forEach(element => {
+            //set tab as active if it is the default tab of the logged in user
+            element.active = this.$store.state.user.defaultTab === element.sTab;
             if (element.active) {
+                //if the tab is active/selected fetch the corresponding patients
                 this.getPatients(element.sTab, element.falar);
             }
         })
@@ -93,16 +95,16 @@ export default {
          * Fetch patients data according to the tab that was selected by the user
          */
         getPatients: function (sTab, falar) {
-            var url = `http://sapgtw.ahi.com.cy:8000/sap/opu/odata/sap/ZAOC_DEV_SRV/PatientCaseSet?$skip=0&$top=100&$filter=`;
+            var url = `/sap/opu/odata/sap/ZAOC_DEV_SRV/PatientCaseSet?$skip=0&$top=100&$filter=`;
             if (sTab) {
                 url += `substringof('${sTab}',TAB) and FALAR eq '${falar}'`;
             } else {
                 url += `FALAR eq '${falar}'`;
             }
-            if (this.authenticated) {
+            if (this.$store.state.authenticated) {
                 this.patients = [];
                 this.showLoading = true;
-                axios.get(url)
+                this.$store.state.service.get(url)
                     .then(response => {
                         this.patients = response.data.d.results;
                         this._patients = this.patients;
@@ -121,7 +123,8 @@ export default {
          * Navigate to Charge patient view
          */
         onChargePatient: function(patient,evt){
-            this.$router.push({path:`/chargepatient/${patient.FALNR}`});
+            this.$router.push({path:`/chargepatient/${patient.FALNR}`,params: {patient:patient}});
+            
         },
 
         onSearch:function(val){

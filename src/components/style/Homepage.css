@@ -30,3 +30,12 @@
 h4.card-title {
     font-size: 1.25rem;
 }
+
+.card:hover{
+    cursor:pointer;
+    background: rgb(214, 212, 212) !important ;
+}
+
+.card-body {
+    font-size:0.85rem;
+}

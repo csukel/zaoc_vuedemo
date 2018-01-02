@@ -1,0 +1,3 @@
+export const SAVE_STARTUP_PARAM = 'SAVE_STARTUP_PARAM';
+
+export const SUCCESS_AUTH  = 'SUCCESS_ATUH';

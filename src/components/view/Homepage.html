@@ -17,11 +17,12 @@
         <b-row style="margin-top:1rem">
             
             <b-col  sm="6" md="4" lg="3" xl="2" v-for="patient in patients" >
-                <b-card  style="margin: 0.3rem"  bg-variant="light" :key="patient.FALNR" :title="patient.VNAME + ' ' + patient.NNAME" :sub-title="patient.NAME1 + ' ' + patient.NAME2">
+                <b-card v-on:click="onChargePatient(patient,$event)"  style="margin: 0.3rem"  bg-variant="light" :key="patient.FALNR" :title="patient.VNAME + ' ' + patient.NNAME" :sub-title="patient.NAME1 + ' ' + patient.NAME2">
                     <b-container fluid>
                         <b-row>
                             <b-col >
                                 <p>Bed: {{ patient.BETT }}</p>
+                                <small class="text-muted">D: {{ patient.ZDAY }}, E: {{patient.EVENING}}, N: {{patient.NIGHT}}</small>
                             </b-col>
                             <b-col style="text-align: right">
                                 <p style="text-align: right">Age: {{patient.ZAGE }}y</p>
@@ -29,7 +30,7 @@
                             </b-col>
                         </b-row>
                     </b-container>
-                    <div slot="footer">
+                    <!-- <div slot="footer">
                         <b-container>
                             <b-row>
                                 <b-col style="text-align: start">
@@ -40,9 +41,7 @@
                                 </b-col>
                             </b-row>
                         </b-container>
-
-
-                    </div>
+                    </div> -->
                 </b-card>
             </b-col>
         </b-row>

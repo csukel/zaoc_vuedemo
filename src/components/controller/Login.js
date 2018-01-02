@@ -24,15 +24,28 @@ export default {
                     }
                 })
                     .then(response => {
-                        //alert('Authenticated successfully!');
-                        var user = {
+                        
+                        const user = {
                             name: response.data.firstName,
                             id: response.data.id,
                             fullname: response.data.fullName
                         };
-                        this.authenticated = true;
-                        //emit event
-                        this.$emit('authentication',user);
+
+                        this.$store.state.service.get(`/sap/opu/odata/sap/ZAOC_DEV_SRV/UsersSet?$filter=UNAME eq '${user.id}'`)
+                        .then(response => {
+                            const data =response.data.d.results[0];
+                            user.defaultStorageLoc = data.LGORT;
+                            user.defaultTab = data.TAB;
+    
+                            //save data to store
+                            this.$store.commit('SAVE_STARTUP_PARAM', user);
+                            this.$store.commit('SUCCESS_ATUH');
+                            //navigate to homepage view
+                            this.$router.push('/homepage');
+                        })
+                        .catch(e => {
+                            alert('Error ' + e);
+                        });
                     })
                     .catch(e => {
                         if (e.response.status === 401) {

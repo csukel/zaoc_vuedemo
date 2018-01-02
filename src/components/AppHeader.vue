@@ -36,6 +36,12 @@
                     <p>
                         <span>Fullname: <em>{{user.fullname}}</em> </span>
                     </p>
+                    <p>
+                        <span>Storage Location: <em>{{user.defaultStorageLoc}}</em> </span>
+                    </p>
+                    <p>
+                        <span>Tab: <em>{{user.defaultTab}}</em> </span>
+                    </p>
             
                 </b-col>
             </b-row>
@@ -47,15 +53,17 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState } from 'vuex'
 export default {
   name: "app-header",
-  props: ["user"],
+  computed: mapState({
+      user: state => state.user,
+  }),
   methods: {
     onSignout: function() {
       //alert('signout');
-      var url = `http://sapgtw.ahi.com.cy:8000/sap/public/bc/icf/logoff`;
-      axios.get(url).then(response => {
+      var url = `/sap/public/bc/icf/logoff`;
+      this.$store.state.service.get(url).then(response => {
         location.reload();
       });
     }

@@ -3,11 +3,14 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
     name: "ChargePatient",
-    props: ['authenticated'],
+    props: ['patient'],
     components: {
         "PulseLoader": PulseLoader
     },
     data() {
         return {}
+    },
+    created() {
+        var t = this.$router;
     }
 }

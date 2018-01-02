@@ -20,7 +20,8 @@ export default new Router({
     {
       path:'/chargepatient/:falnr',
       name: 'ChargePatient',
-      component: ChargePatient
+      component: ChargePatient,
+      props: true
     }
   ]
 })

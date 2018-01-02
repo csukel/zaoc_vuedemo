@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- navbar (header) -->
-    <app-header v-if="authenticated" :user="user"></app-header>
+    <app-header v-if="authenticated"></app-header>
     <!-- views will be placed here -->
-    <router-view v-on:authentication="authAction" :authenticated="authenticated" />
+    <router-view  />
   </div>
 </template>
 
