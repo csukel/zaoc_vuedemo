@@ -1,0 +1,8 @@
+.busy-indicator-container{
+    text-align: center;
+    margin-top:1rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+}

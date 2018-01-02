@@ -1,0 +1,19 @@
+.nav-tabs .nav-link {
+    color: #17A2B8;
+    background: #F8F9FA;
+}
+.nav-tabs .nav-link.active {
+    color: white;
+    background: #17A2B8;
+    /* border-color: yellow; */
+}
+
+.nav-tabs .nav-link:hover{
+    background: gray !important;
+    color: white !important;
+}
+
+
+.fav-image:hover{
+    cursor: pointer;
+}

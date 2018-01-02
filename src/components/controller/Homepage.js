@@ -123,7 +123,8 @@ export default {
          * Navigate to Charge patient view
          */
         onChargePatient: function(patient,evt){
-            this.$router.push({path:`/chargepatient/${patient.FALNR}`,params: {patient:patient}});
+            // this.$router.push({path:`/chargepatient/${patient.FALNR}`,params: {patient:patient}});
+            this.$router.push({name:'ChargePatient',params: {falnr:patient.FALNR,patient:patient}});
             
         },
 

@@ -10,6 +10,11 @@ import App from './App';
 import router from './router';
 import store from './store';
 
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon';
+
+// globally (in your main .js file)
+Vue.component('icon', Icon);
 
 Vue.config.productionTip = false;
 
@@ -19,5 +24,5 @@ new Vue({
   store,
   router,
   template: '<App/>',
-  components: { App }
+  components: { App,Icon }
 })

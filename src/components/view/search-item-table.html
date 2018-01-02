@@ -1,0 +1,41 @@
+<b-container fluid>
+    <b-row>
+        <b-col>
+            <b-input-group>
+                <b-form-input @change="onSearchItems" placeholder="Search by Description or SAP Code"></b-form-input>
+                <b-input-group-button slot="right">
+                    <b-button>
+                        <icon name="search" scale="1"></icon>
+                    </b-button>
+                </b-input-group-button>
+            </b-input-group>
+        </b-col>
+    </b-row>
+    <b-row>
+        <b-col>
+            <pulse-loader class="busy-indicator-container" :loading="showLoading" :size="busyIndicatorSize"></pulse-loader>
+            <b-collapse id="search-list-collapse" v-model="searchItems.length>0">
+                <b-button style="margin-top:0.5rem;" variant="primary" @click="addItemsToCart"><icon name="plus" scale="1"></icon> Add Items to Cart</b-button>
+                <b-table style="margin-top:0.5rem;" :fields="fields" hover :items="searchItems">
+                    <template slot="chargeQuantity" scope="data">
+                        <b-input-group>
+                            <b-input-group-button slot="left">
+                                <b-button @click="decreaseQty($event,data)" variant="danger">
+                                    <icon name="minus" scale="1"></icon>
+                                </b-button>
+                            </b-input-group-button>
+                            <b-form-input v-model="data.value"></b-form-input>
+
+                            <b-input-group-button slot="right">
+                                <b-button  @click="increaseQty($event,data)" variant="success">
+                                    <icon name="plus" scale="1"></icon>
+                                </b-button>
+                            </b-input-group-button>
+                        </b-input-group>
+                    </template>
+                </b-table>
+            </b-collapse>
+        </b-col>
+    </b-row>
+
+</b-container>

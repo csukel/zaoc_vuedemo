@@ -47,7 +47,7 @@ export default {
             .catch(e => {
                 if (e.response.status === 401) {
                     //navigate to login view
-                    this.$router.push('login');
+                    this.$router.push('/login');
                 }
             })
     }
