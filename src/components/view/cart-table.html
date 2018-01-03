@@ -1,0 +1,36 @@
+<b-container style="margin-top:2rem" fluid>
+    <b-row>
+        <b-col>
+                <h3>Checkout List ({{cartItems.length}})</h3>
+        </b-col>
+        <b-col style="text-align: right">
+            <b-button @click="onChargePatient" variant="primary">Charge Patient</b-button>
+        </b-col>
+    </b-row>
+    <div v-if="showLoading" class="busy-indicator-outer-container">
+        <pulse-loader  class="busy-indicator-content" :loading="showLoading" :size="busyIndicatorSize"></pulse-loader>
+    </div>
+    <b-table  style="margin-top:0.5rem;" :fields="fields" hover :items="cartItems">
+        <template slot="chargeQuantity" scope="data">
+            <b-input-group>
+                <b-input-group-button slot="left">
+                    <b-button @click="decreaseQty($event,data)" variant="danger">
+                        <icon name="minus" scale="1"></icon>
+                    </b-button>
+                </b-input-group-button>
+                <b-form-input type="number" min="0" :max="data.item.availQuantity" @change="onChargeQtyChange($event,data)" :value="data.item.chargeQuantity"></b-form-input>
+
+                <b-input-group-button slot="right">
+                    <b-button @click="increaseQty($event,data)" variant="success">
+                        <icon name="plus" scale="1"></icon>
+                    </b-button>
+                </b-input-group-button>
+            </b-input-group>
+        </template>
+        <template slot="deleteItem" scope="data">
+            <b-button variant="danger" @click="onRemoveCartItem(data)">
+                <icon name="remove" scale="1"></icon>
+            </b-button>
+        </template>
+    </b-table>
+</b-container>

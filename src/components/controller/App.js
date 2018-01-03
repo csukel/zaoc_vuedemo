@@ -18,7 +18,8 @@ export default {
     },
     beforeCreate() {
         //send a dummy request to check if user is already authenticated
-        var url = "http://useraneme:password@sapgtw.ahi.com.cy:8000/sap/bc/ui2/start_up"
+        // var url = "http://useraneme:password@sapgtw.ahi.com.cy:8000/sap/bc/ui2/start_up"
+        var url = "/sap/bc/ui2/start_up"
         axios.get(url, {
         })
             .then(response => {

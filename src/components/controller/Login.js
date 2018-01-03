@@ -16,7 +16,8 @@ export default {
 
             if (username.length > 0 && password.length > 0) {
                 //authenticate user by sending a request
-                var url = `http://${username}:${password}@sapgtw.ahi.com.cy:8000/sap/bc/ui2/start_up`
+                // var url = `http://${username}:${password}@sapgtw.ahi.com.cy:8000/sap/bc/ui2/start_up`
+                var url = `/sap/bc/ui2/start_up`
                 axios.get(url, {
                     auth: {
                         username: username,

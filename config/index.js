@@ -10,7 +10,14 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/sap/*': {
+        target: 'http://sapgtw.ahi.com.cy:8000',
+        bypass: function(req,res,proxyOptions){
+          var t = req;
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

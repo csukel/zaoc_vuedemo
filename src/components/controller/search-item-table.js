@@ -1,4 +1,5 @@
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import * as types from '../../store/mutation-types';
 export default {
     name: "search-item-table",
     components: {
@@ -6,6 +7,8 @@ export default {
     },
     data() {
         return {
+            perPage:0,
+            currentPage:1,
             showLoading: false,
             busyIndicatorSize: '30px',
             searchItems: [],
@@ -98,7 +101,13 @@ export default {
             let filteredItems = this.searchItems.filter(item=>{
                 return parseInt(item.availQuantity) > 0 && parseInt(item.chargeQuantity)>0;
             });
-            //TODO: commit filteredItems to the store 
+            //commit filteredItems to the store 
+            this.$store.commit(types.ADD_TO_CART,filteredItems);
+            //clear search items table
+            this.onClearSearchItems();
+        },
+        onClearSearchItems: function(){
+            this.searchItems=[];
         }
     }
 };

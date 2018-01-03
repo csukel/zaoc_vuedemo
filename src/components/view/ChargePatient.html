@@ -1,29 +1,33 @@
 <div>
-    <b-container style="background: #DDDDDD;text-align:center;" fluid>
-        <b-row style="display: inline-block">
-            <span style=" font-weight:bold;">{{patient.VNAME}} {{patient.NNAME}} {{patient.ZAGE}}y</span>
-            <img v-bind:src="getGenderSrc(patient)" alt="gender"> Room: {{patient.ZIMMR}}, Bed: {{patient.BETT}}, DoB: {{formattedDob}}
-        </b-row>
-        <br/>
-        <b-row style="display: inline-block">
-            <span style=" font-weight:bold;">Case No: {{patient.FALNR}} </span>, Patient No: {{patient.PATNR}}, Att. Phys: Dr {{patient.NAME1}} {{patient.NAME2}}
-        </b-row>
-    </b-container>
-    <b-nav fill tabs>
-        <b-nav-item @click="onTabPress(tab,$event)" v-for="tab in tabs" :key="tab.name" :active="tab.active">
-            {{ tab.name }}
-        </b-nav-item>
+    <div>
+            <b-container style="background: #DDDDDD;text-align:center;" fluid>
+                    <b-row style="display: inline-block">
+                        <span style=" font-weight:bold;">{{patient.VNAME}} {{patient.NNAME}} {{patient.ZAGE}}y</span>
+                        <img v-bind:src="getGenderSrc(patient)"  alt="gender"> Room: {{patient.ZIMMR}}, Bed: {{patient.BETT}}, DoB: {{formattedDob}}
+                    </b-row>
+                    <br/>
+                    <b-row style="display: inline-block">
+                        <span style=" font-weight:bold;">Case No: {{patient.FALNR}} </span>, Patient No: {{patient.PATNR}}, Att. Phys: Dr {{patient.NAME1}} {{patient.NAME2}}
+                    </b-row>
+                </b-container>
+                <b-nav fill tabs>
+                    <b-nav-item @click="onTabPress(tab,$event)" v-for="tab in tabs" :key="tab.name" :active="tab.active">
+                        {{ tab.name }}
+                    </b-nav-item>
+            
+                </b-nav>
+                <b-container style="margin-top:0.2rem" fluid>
+                    <b-row>
+                        <b-col style="margin-bottom: 0.5rem" v-for="img in images">
+                            <img class="fav-image" v-bind:src="img.src" @click="onFavImageClick(img)">
+                        </b-col>
+                    </b-row>
+            
+                </b-container>
+                <search-item-table></search-item-table>
+    </div>
 
-    </b-nav>
-    <b-container style="margin-top:0.2rem" fluid>
-        <b-row>
-            <b-col style="margin-bottom: 0.5rem" v-for="img in images">
-                <img class="fav-image" v-bind:src="img.src">
-            </b-col>
-        </b-row>
-
-    </b-container>
-    <search-item-table></search-item-table>
+    <cart-table :patient="patient"></cart-table>
     <!-- <b-container fluid>
         <b-row>
             <b-col>

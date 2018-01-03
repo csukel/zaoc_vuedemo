@@ -1,8 +1,13 @@
-<b-container fluid>
-    <b-row>
+<b-container style="background-color: rgb(221, 221, 221);margin-top:1rem" fluid>
+    <b-row style="padding:0.8rem">
         <b-col>
             <b-input-group>
                 <b-form-input @change="onSearchItems" placeholder="Search by Description or SAP Code"></b-form-input>
+                <b-input-group-button slot="right" v-if="searchItems.length>0">
+                        <b-button variant = "danger" @click="onClearSearchItems" >
+                            <icon name="remove" scale="1"></icon>
+                        </b-button>
+                    </b-input-group-button>
                 <b-input-group-button slot="right">
                     <b-button>
                         <icon name="search" scale="1"></icon>
@@ -16,7 +21,7 @@
             <pulse-loader class="busy-indicator-container" :loading="showLoading" :size="busyIndicatorSize"></pulse-loader>
             <b-collapse id="search-list-collapse" v-model="searchItems.length>0">
                 <b-button style="margin-top:0.5rem;" variant="primary" @click="addItemsToCart"><icon name="plus" scale="1"></icon> Add Items to Cart</b-button>
-                <b-table style="margin-top:0.5rem;" :fields="fields" hover :items="searchItems">
+                <b-table :per-page="perPage" :current-page="currentPage" style="margin-top:0.5rem;" :fields="fields" hover :items="searchItems">
                     <template slot="chargeQuantity" scope="data">
                         <b-input-group>
                             <b-input-group-button slot="left">

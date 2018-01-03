@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-    baseURL : 'http://sapgtw.ahi.com.cy:8000'
+    // baseURL : 'http://sapgtw.ahi.com.cy:8000'
 });
 
 const state = {
@@ -13,6 +13,7 @@ const state = {
         defaultStorageLoc: '1100',
         defaultTab: 'WARD'
     },
+    cart: [],
     authenticated : false
     
 }
